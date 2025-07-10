@@ -120,21 +120,64 @@ class Linkedlist:
         else:
             curr.next  = curr.next.next 
                  
+    def search_by_val(self,value):
+        pos = 0
+        curr = self.head
+        while curr!= None:
+            if curr.data ==value:
+                print('node found at',pos)
+                return pos
+            curr =curr.next
+            pos+=1
+        return 'Not found'    
+    
+    def search_by_index(self,index):
+        pos = 0
+        curr = self.head
+        while curr!= None :
+            if pos==index:
+                return curr.data
+            curr =curr.next
+            pos+=1
+        return 'Not found'    
 
-
+    def midofll(self):
+        if self.head ==None:
+            return 'empty'
+        curr = self.head
+        counter = 0
+        while curr!=None:
+            counter+=1
+            curr = curr.next
+        mid = counter//2
+        newcount = 0
+        curr = self.head
+        while curr != None:
+            if newcount ==mid:
+                print("data at mid",curr.data)
+            newcount+=1
+            curr = curr.next       
                 
         
 ll = Linkedlist()
-ll.insert_head(1)
-ll.insert_head(2)
+
+# ll.insert_head(1)
+# ll.insert_head(2)
 ll.insert_head(3)
 ll.insert_head(4)
-ll.insert_tail(6)
-ll.insert_at_index(7,4) #(7,300)
-ll.after_value(9,3)
-ll.traverse()
-ll.delete_head()
-ll.delete_tail()
-ll.delete_index(2)
-ll.delete_specific_node(7)
+# ll.insert_tail(6)
+# ll.insert_at_index(7,4) #(7,300)
+# ll.after_value(9,3)
+
+# ll.traverse()
+
+# ll.delete_head()
+# ll.delete_tail()
+# ll.delete_index(2)
+# ll.delete_specific_node(7)
+
+ll.search_by_val(3)
+print(ll.search_by_index(1))
+
+ll.midofll()
 ll.traverse()
