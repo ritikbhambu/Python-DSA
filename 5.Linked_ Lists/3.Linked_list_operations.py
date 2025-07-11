@@ -157,14 +157,36 @@ class Linkedlist:
                 print("data at mid",curr.data)
             newcount+=1
             curr = curr.next       
-                
-        
+
+    def midusingtwopointers(self):
+        if self.head==None:
+            return self.head  # if head is none then return head which is similiar to return none
+        if self.head.next ==None:
+            return self.head
+        slow = self.head
+        fast = self.head
+        while fast != None and fast.next != None:
+            slow =slow.next
+            fast = fast.next.next
+        return slow  
+
+    def reverse_linked(self):
+        prev = None
+        curr = self.head
+        while curr!= None:
+            next = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next
+        self.head = prev          
+
+ 
 ll = Linkedlist()
 
-# ll.insert_head(1)
-# ll.insert_head(2)
-ll.insert_head(3)
-ll.insert_head(4)
+ll.insert_head(18)
+ll.insert_head(11)
+ll.insert_head(9)
+ll.insert_head(5)
 # ll.insert_tail(6)
 # ll.insert_at_index(7,4) #(7,300)
 # ll.after_value(9,3)
@@ -176,8 +198,76 @@ ll.insert_head(4)
 # ll.delete_index(2)
 # ll.delete_specific_node(7)
 
-ll.search_by_val(3)
-print(ll.search_by_index(1))
+# ll.search_by_val(3)
+# print(ll.search_by_index(1))
 
-ll.midofll()
+# ll.midofll()
+# print(ll.midusingtwopointers())
+# ll.traverse()
+# ll.reverse_linked()
+ 
 ll.traverse()
+
+
+
+
+
+
+
+
+
+def merge_and_sort_two_sorted_ll(head1,head2):
+    if head1 ==None:
+        return head2
+    if head2 == None:
+        return head1
+    finalhead = None
+    finaltail = None
+    while head1 != None and head2 != None:
+        if head1.data <head2.data:
+            if finalhead == None: # starting position
+                finalhead = head1 # both head and tail will be at same location
+                finaltail = head1
+            else: # we are somewhere in between
+                finaltail.next = head1 # link final tail and other list
+                finaltail = head1 # point finaltail at head1
+            head1 = head1.next
+        else:
+
+            if finalhead == None: # starting position
+                finalhead = head2 # both head and tail will be at same location
+                finaltail = head2
+            else: # we are somewhere in between
+                finaltail.next = head2 # link final tail and other list
+                finaltail = head2 # point finaltail at head1
+            head2 = head2.next
+    if head1 is not None: # head2 list is finished but head1 is not finished yet
+        finaltail.next = head1
+    if head2 is not None:
+        finaltail.next = head2     # head1 list is finished but head2 is not finished yet
+    return finalhead
+
+
+
+
+# ll2 = Linkedlist()
+# ll2.insert_head(20)
+# ll2.insert_head(17)
+# ll2.insert_head(9)
+# ll2.insert_head(3)
+# ll2.insert_head(1)
+
+ 
+
+# # Merge and sort
+# merged_head = merge_and_sort_two_sorted_ll(ll.head, ll2.head)
+
+# # To print merged list
+# def print_list(head):
+#     curr = head
+#     while curr:
+#         print(curr.data, end=" -> ")
+#         curr = curr.next
+#     print("None")
+
+# print_list(merged_head)
