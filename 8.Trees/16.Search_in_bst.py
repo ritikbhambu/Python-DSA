@@ -22,6 +22,7 @@ node3.right = node7
 node3.left = node6
 
 #---------------------
+
 def search_bst(root,value):
     if root ==None:
         return
