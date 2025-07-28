@@ -4,9 +4,12 @@ def digit(num):
         return 1
     elif num==0:
         return 0
-    count =1 +digit(int(num/10)) # counting the no of times loop ran
+    # count =1 +digit(int(num/10)) # counting the no of times loop ran
     
-    return count
+    # return count
+    
+    small = digit(int(num/10))
+    return 1 + small
 
 
 print(digit(57834545))
