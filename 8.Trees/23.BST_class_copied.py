@@ -1,3 +1,4 @@
+ 
 class BstNode:
     def __init__(self, data):
         self.data = data
@@ -23,8 +24,8 @@ def search(root, key):
     else:
         return search(root.right, key)
 
-def find_min(node):
-    while node.left is not None:
+def find_min(node): # in right subtree we know that min always on left side
+    while node.left is not None: # so traverse through left until its none and return last left value
         node = node.left
     return node
 
@@ -40,15 +41,20 @@ def delete(root, key):
         # Node found
         if root.left is None and root.right is None:
             return None  # Case 1: No child
-        elif root.left is None:
-            return root.right  # Case 2: One right child
-        elif root.right is None:
-            return root.left  # Case 2: One left child
+        
+        elif root.left is None: # Case 2: One right child
+            return root.right  # if left is none than delete the root and return right subtree
+        
+        elif root.right is None: # Case 2: One left child
+            return root.left  # if right is none than delte the root and return left subtree
         else:
             # Case 3: Two children
-            min_node = find_min(root.right)
-            root.data = min_node.data
-            root.right = delete(root.right, min_node.data)
+            # approach1 - we can either replace the root with maximum value from the left subtree
+            # approach2- or we can replace the minimum value from the right side . 
+            # we are using approach 2 here
+            min_node = find_min(root.right) # find min from right
+            root.data = min_node.data # replace the root with min 
+            root.right = delete(root.right, min_node.data) # delete the node which we used as replacemet from the right subtree
     return root
 
 def inorder(root):
