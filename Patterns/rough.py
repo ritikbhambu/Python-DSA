@@ -98,17 +98,32 @@
 
 # count_frequencies([1,2,2,3,3,3,4,4,4,])
 
-def maxProfit( price):
-    n = len(price)
-    profit = 0
+# def maxProfit( price):
+#     n = len(price)
+#     profit = 0
 
-    for i in range(1,n):
+#     for i in range(1,n):
     
-        if (price[i] > price[i - 1]):
-            profit += price[i] - price[i - 1]
+#         if (price[i] > price[i - 1]):
+#             profit += price[i] - price[i - 1]
     
 
-    return profit
-print(maxProfit([1,2,5,2,3,9]))
+#     return profit
+# print(maxProfit([1,2,5,2,3,9]))
+
+def print_subarrays(arr): # bruteforce method to print subarrays
+    n = len(arr)
+    for st in range(n):
+        for end in range(st, n):
+            for i in range(st, end + 1):
+                print(arr[i], end="")
+            print(" ", end="")
+        print()
+
+arr = [1, 2, 3, 4, 5]
+print_subarrays(arr)
+
+ 
+
 
 
